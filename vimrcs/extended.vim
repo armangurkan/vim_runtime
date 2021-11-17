@@ -258,6 +258,18 @@ let g:airline#extensions#tabline#enabled = 1
 
 
 " ==========================
+" THEME SETTINGS SPACE VIM DARK
+" -------------------------
+colorscheme space-vim-dark
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
+hi Comment cterm=italic
+autocmd BufWritePost,FileWritePost,FilterWritePost,BufReadPost,FileReadPost,FilterReadPost,StdinReadPost,VimEnter,WinEnter,WinLeave,BufWinEnter,BufWinLeave * AirlineRefresh
+autocmd VimEnter * AirlineRefresh
+
+
+" ==========================
 " NERDTree Formatting
 " -------------------------
 set encoding=UTF-8
@@ -266,16 +278,3 @@ if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
 let g:NERDTreeWinPos = "left"
-
-
-" ==========================
-" THEME SETTINGS SPACE VIM DARK
-" -------------------------
-colorscheme space-vim-dark
-hi Normal     ctermbg=NONE guibg=NONE
-hi LineNr     ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
-hi Comment cterm=italic
-autocmd BufWrite * AirlineRefresh
-
-
