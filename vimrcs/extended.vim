@@ -265,8 +265,7 @@ hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
 hi Comment cterm=italic
-autocmd BufWritePost,FileWritePost,FilterWritePost,BufReadPost,FileReadPost,FilterReadPost,StdinReadPost,VimEnter,WinEnter,WinLeave,BufWinEnter,BufWinLeave * AirlineRefresh
-autocmd VimEnter * AirlineRefresh
+autocmd BufEnter,FocusGained,BufWritePost,FileWritePost,FilterWritePost,BufReadPost,FileReadPost,FilterReadPost,StdinReadPost,VimEnter,WinEnter,WinLeave,BufWinEnter,BufWinLeave * AirlineRefresh
 
 
 " ==========================
@@ -278,6 +277,7 @@ if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
 let g:NERDTreeWinPos = "left"
+map <leader>t :NERDTreeToggle<cr>
 
 
 "=======================
@@ -404,3 +404,40 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+
+
+function! RangeSearch(direction)
+  call inputsave()
+  let g:srchstr = input(a:direction)
+  call inputrestore()
+  if strlen(g:srchstr) > 0
+    let g:srchstr = g:srchstr.
+          \ '\%>'.(line("'<")-1).'l'.
+          \ '\%<'.(line("'>")+1).'l'
+  else
+    let g:srchstr = ''
+  endif
+endfunction
+vnoremap <silent> / :<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0\|exec '/'.g:srchstr\|endif<CR>
+vnoremap <silent> ? :<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0\|exec '?'.g:srchstr\|endif<CR>
+
+
+
+
+
+
+function! Diff(spec)
+    vertical new
+    setlocal bufhidden=wipe buftype=nofile nobuflisted noswapfile
+    let cmd = "++edit #"
+    if len(a:spec)
+        let cmd = "!git -C " . shellescape(fnamemodify(finddir('.git', '.;'), ':p:h:h')) . " show " . a:spec . ":#"
+    endif
+    execute "read " . cmd
+    silent 0d_
+    diffthis
+    wincmd p
+    diffthis
+endfunction
+command! -nargs=? Diff call Diff(<q-args>)

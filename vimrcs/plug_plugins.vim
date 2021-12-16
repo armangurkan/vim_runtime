@@ -17,7 +17,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
+Plug 'pedrohdz/vim-yaml-folds'
 " Using a non-default branch
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
@@ -26,6 +26,9 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 
 " Plugin options
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab'
+Plug 'christoomey/vim-conflicted'
 
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -39,7 +42,7 @@ Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'towolf/vim-helm'
-
+Plug 'puremourning/vimspector'
 " 
 "X Plug '~/fzf'
 " Plug '~/ale_yaml_linter'
