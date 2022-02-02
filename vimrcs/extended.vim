@@ -265,7 +265,7 @@ hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
 hi Comment cterm=italic
-autocmd BufEnter,FocusGained,BufWritePost,FileWritePost,FilterWritePost,BufReadPost,FileReadPost,FilterReadPost,StdinReadPost,VimEnter,WinEnter,WinLeave,BufWinEnter,BufWinLeave * AirlineRefresh
+" autocmd BufEnter,FocusGained,BufWritePost,FileWritePost,FilterWritePost,BufReadPost,FileReadPost,FilterReadPost,StdinReadPost,VimEnter,WinEnter,WinLeave,BufWinEnter,BufWinLeave * AirlineRefresh
 
 
 " ==========================
@@ -441,3 +441,10 @@ function! Diff(spec)
     diffthis
 endfunction
 command! -nargs=? Diff call Diff(<q-args>)
+
+
+
+" Indentation modification
+set shiftwidth=2
+vnoremap <silent> > >gv
+vnoremap <silent> < <gv
